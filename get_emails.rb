@@ -20,8 +20,8 @@ circle_hashes.each { |circle| names_to_ids[circle[:name]] = circle[:id]}
 if (target_circle) 
 	circle_id = names_to_ids[target_circle]
 	circle_xml = get "circle/#{circle_id}/mailing_list"
-	people = Nokogiri::XML.parse(circle_xml).xpath("people/person/email")
-	puts people.map {|person| "#{person.text}"}
+	emails = Nokogiri::XML.parse(circle_xml).xpath("people/person/email")
+	puts emails.map {|email| "#{email.text}"}
 else
 	puts "please specify a circle from the below:"
 	puts circle_hashes.map {|circle| circle[:name]}
