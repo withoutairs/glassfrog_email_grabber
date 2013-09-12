@@ -16,8 +16,13 @@ circle_hashes = circles.map do |circle|
 end
 names_to_ids = {}
 circle_hashes.each { |circle| names_to_ids[circle[:name]] = circle[:id]}
-	
-circle_id = names_to_ids[target_circle]
-circle_xml = get "circle/#{circle_id}/mailing_list"
-people = Nokogiri::XML.parse(circle_xml).xpath("people/person/email")
-puts people.map {|person| "#{person.text}"}
+
+if (target_circle) 
+	circle_id = names_to_ids[target_circle]
+	circle_xml = get "circle/#{circle_id}/mailing_list"
+	people = Nokogiri::XML.parse(circle_xml).xpath("people/person/email")
+	puts people.map {|person| "#{person.text}"}
+else
+	puts "please specify a circle from the below:"
+	puts circle_hashes.map {|circle| circle[:name]}
+end
