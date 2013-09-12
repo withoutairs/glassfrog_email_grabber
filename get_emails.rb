@@ -1,4 +1,5 @@
 require "open-uri"
+require 'nokogiri'
 
 GLASSFROG_URI = 'https://glassfrog.holacracy.org/api/v2/'
 
@@ -11,4 +12,8 @@ def glassfrog_key
 end
 
 circles = get "circle"
-puts circles
+x = Nokogiri::XML.parse(circles).xpath("circles/circle").map do |circle|
+	{id: circle.xpath('id').text, name: circle.xpath('name').text}
+end
+
+puts x
