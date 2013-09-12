@@ -2,7 +2,13 @@ require "open-uri"
 
 GLASSFROG_URI = 'https://glassfrog.holacracy.org/api/v2/'
 
-# circle_id = GLASSFROG_URI
-xml = URI.parse("#{GLASSFROG_URI}person.xml?api_key=#{ENV['GLASSFROG_KEY']}").read
+def get method
+	URI.parse("#{GLASSFROG_URI}#{method}.xml?api_key=#{glassfrog_key}").read
+end
 
-puts xml
+def glassfrog_key
+	ENV['GLASSFROG_KEY']
+end
+
+circles = get "circle"
+puts circles
