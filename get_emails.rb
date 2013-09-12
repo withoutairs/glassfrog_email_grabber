@@ -1,12 +1,11 @@
 require "open-uri"
 require 'nokogiri'
 
-GLASSFROG_URI = 'https://glassfrog.holacracy.org/api/v2/'
-
 def get method
-	URI.parse("#{GLASSFROG_URI}#{method}.xml?api_key=#{glassfrog_key}").read
+	URI.parse("#{glassfrog_uri}#{method}.xml?api_key=#{glassfrog_key}").read
 end
 
+def glassfrog_uri; 'https://glassfrog.holacracy.org/api/v2/'; end
 def glassfrog_key; ENV['GLASSFROG_KEY']; end
 def target_circle; ARGV.first; end
 
