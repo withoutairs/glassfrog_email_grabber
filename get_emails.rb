@@ -2,9 +2,9 @@ require "open-uri"
 require 'nokogiri'
 
 DEFAULT_ROLES = {"Facilitators" => "facilitators",
-				"Lead Links" => "lead_links",
-				"Rep Links" => "rep_links",
-				"Secretaries" => "secretaries"}
+		"Lead Links" => "lead_links",
+		"Rep Links" => "rep_links",
+		"Secretaries" => "secretaries"}
 def get method
 	URI.parse("#{glassfrog_uri}#{method}.xml?api_key=#{glassfrog_key}").read
 end
